@@ -2,13 +2,19 @@
 session_start();
 require_once 'config.php';
 
+header('Content-Type: application/json'); // Set JSON response header
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $npk = $_POST['npk'] ?? '';
     $password = $_POST['password'] ?? '';
 
     // Validasi input
     if (empty($npk) || empty($password)) {
-        die("Semua kolom harus diisi!");
+        echo json_encode([
+            'success' => false,
+            'message' => 'Semua kolom harus diisi!'
+        ]);
+        exit;
     }
 
     // Verifikasi pengguna
@@ -29,11 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("INSERT INTO sessions (id, user_id, ip_address, user_agent) VALUES (?, ?, ?, ?)");
         $stmt->execute([$session_id, $user['id'], $ip_address, $user_agent]);
 
-        // Redirect ke dashboard
-        header("Location: pages/dashboard.html");
+        // Return JSON with redirect URL
+        echo json_encode([
+            'success' => true,
+            'redirect' => 'dashboard.html'
+        ]);
         exit;
     } else {
-        die("NPK atau kata sandi salah!");
+        echo json_encode([
+            'success' => false,
+            'message' => 'NPK atau kata sandi salah!'
+        ]);
+        exit;
     }
 }
 ?>

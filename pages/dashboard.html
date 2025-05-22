@@ -194,22 +194,28 @@
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
           </div>
           <ul class="navbar-nav justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                <span id="datetime" class="d-sm-inline d-none me-2"></span>
-                <span class="d-sm-inline d-none">Sign In</span>
-              </a>
-            </li>
-            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                  <i class="sidenav-toggler-line"></i>
-                </div>
-              </a>
-            </li>
-          </ul>
+  <li class="nav-item d-flex align-items-center">
+    <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+      <span id="datetime" class="d-sm-inline d-none me-2"></span>
+      <span class="d-sm-inline d-none">Welcome, <?php echo isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : 'User'; ?></span>
+    </a>
+  </li>
+  <li class="nav-item d-flex align-items-center ms-3">
+    <a href="../logout.php" class="nav-link text-body font-weight-bold px-0" onclick="return confirm('Are you sure you want to log out?');">
+      <i class="fas fa-sign-out-alt me-1"></i>
+      <span class="d-sm-inline d-none">Log Out</span>
+    </a>
+  </li>
+  <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+    <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+      <div class="sidenav-toggler-inner">
+        <i class="sidenav-toggler-line"></i>
+        <i class="sidenav-toggler-line"></i>
+        <i class="sidenav-toggler-line"></i>
+      </div>
+    </a>
+  </li>
+</ul>
         </div>
       </div>
     </nav>
@@ -395,6 +401,32 @@
       }
     });
   </script>
+
+  <script>
+  // ... (existing code: updateDateTime, Chart.js, etc.) ...
+
+  // Handle logout
+  document.querySelector('a[href="../logout.php"]').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent default link behavior
+    if (confirm('Are you sure you want to log out?')) {
+      fetch('logout.php', {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            window.location.href = data.redirect || 'index.html';
+          } else {
+            alert(data.message || 'Logout failed. Please try again.');
+          }
+        })
+        .catch(error => {
+          alert('An error occurred during logout. Please try again.');
+          console.error('Error:', error);
+        });
+    }
+  });
+</script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard -->

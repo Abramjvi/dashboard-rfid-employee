@@ -88,7 +88,7 @@
               <div class="container-main shadow-lg">
                 <div class="bottom w-100">
                   <header class="mb-4">SIGN IN</header>
-                  <form action="../login-post.php" method="POST">
+                  <form id="loginForm" method="POST">
                     <div class="form-group mb-4">
                       <input
                         type="text"
@@ -151,11 +151,13 @@
         let captchaImg = document.getElementById("captcha-img");
         let refreshBtn = document.getElementById("refresh-captcha");
 
-        refreshBtn.addEventListener("click", function () {
-          captchaImg.src =
-            "../vendor/securimage-nextgen/securimage_show.php?_=" +
-            new Date().getTime();
-        });
+        if (captchaImg && refreshBtn) {
+          refreshBtn.addEventListener("click", function () {
+            captchaImg.src =
+              "../vendor/securimage-nextgen/securimage_show.php?_=" +
+              new Date().getTime();
+          });
+        }
       });
     </script>
     <script>
@@ -168,7 +170,30 @@
         }
       });
     </script>
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission
 
+        const formData = new FormData(this);
+
+        fetch('../login-post.php', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              window.location.href = data.redirect || 'pages/dashboard.html';
+            } else {
+              alert(data.message || 'Login failed. Please try again.');
+            }
+          })
+          .catch(error => {
+            alert('An error occurred during login. Please try again.');
+            console.error('Error:', error);
+          });
+      });
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

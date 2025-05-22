@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Return JSON with redirect URL
         echo json_encode([
             'success' => true,
-            'redirect' => 'dashboard.html'
+            'redirect' => 'dashboard.php'
         ]);
         exit;
     } else {

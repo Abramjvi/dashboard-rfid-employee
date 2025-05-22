@@ -41,7 +41,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link href="../assets/css/sign-up.css" rel="stylesheet" />
+    <link href="../assets/css/login.css" rel="stylesheet" />
     <style>
       .otp-input {
         width: 40px;

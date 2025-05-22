@@ -9,7 +9,7 @@ session_destroy();
 header('Content-Type: application/json');
 echo json_encode([
     'success' => true,
-    'redirect' => 'login.php' // Redirect to login page
+    'redirect' => 'index.php' // Redirect to login page
 ]);
 exit;
 ?>

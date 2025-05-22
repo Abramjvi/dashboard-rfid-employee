@@ -20,7 +20,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/KYB_Corporation_company_logo.svg/135px-KYB_Corporation_company_logo.svg.png">
   <title>
     Soft UI Dashboard by Creative Tim
   </title>
@@ -37,172 +37,10 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
- <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3" id="sidenav-main">
-  <!-- Sidenav header remains unchanged -->
-  <div class="sidenav-header">
-    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-    <a>
-      <img id="logo-sidebar" class="me-5" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/KYB_Corporation_company_logo.svg/135px-KYB_Corporation_company_logo.svg.png" alt="" style="display: block; margin-left: auto; margin-right: auto;">
-    </a>
-  </div>
-  <hr class="horizontal dark mt-0">
-  <div class="collapse navbar-collapse w-auto max-height-vh-100 h-100" id="sidenav-collapse-main">
-    <ul class="navbar-nav">
-      <!-- Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link " href="../pages/dashboard.html">
-          <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-            <svg width="12px" height="12px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <title>dashboard</title>
-              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g fill="#FFFFFF" fill-rule="nonzero">
-                  <path class="color-background" d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <span class="nav-link-text ms-1">Dashboard</span>
-        </a>
-      </li>
-      <!-- Real-time Occupancy -->
-      <li class="nav-item">
-        <a class="nav-link active" href="../pages/real-time-ccupancy.html">
-          <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-            <svg width="12px" height="12px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <title>real-time-occupancy</title>
-              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g fill="#FFFFFF" fill-rule="nonzero">
-                  <path class="color-background" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"></path>
-                  <path class="color-background opacity-6" d="M12 8v4l4 2"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <span class="nav-link-text ms-1">Real time Occupancy</span>
-        </a>
-      </li>
-      <!-- Evacuation Status Monitor -->
-      <li class="nav-item">
-  <a class="nav-link" href="../pages/Evacuation-Status-Monitor.html">
-    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-      <svg width="12px" height="12px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <title>evacuation-status</title>
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g fill="#FFFFFF" fill-rule="nonzero">
-            <path class="color-background" d="M12 4a3 3 0 100-6 3 3 0 000 6zM12 7h-2v6h5l3-3-3-3h-3z"></path>
-            <path class="color-background opacity-6" d="M18 7h4v10h-4V7z"></path>
-          </g>
-        </g>
-      </svg>
-    </div>
-    <span class="nav-link-text ms-1">Evacuation Status Monitor</span>
-  </a>
-      <!-- Historical Occupancy -->
-      <li class="nav-item">
-        <a class="nav-link" href="../pages/Historical Occupancy.html">
-          <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-            <svg width="12px" height="12px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <title>historical-occupancy</title>
-              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g fill="#FFFFFF" fill-rule="nonzero">
-                  <path class="color-background" d="M3 17h18v2H3zM3 12h18v2H3zM3 7h18v2H3zM5 3h14v2H5z"></path>
-                  <path class="color-background opacity-6" d="M8 3v14"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <span class="nav-link-text ms-1">Historical Occupancy</span>
-        </a>
-      </li>
-      <!-- People Tracking -->
-      <li class="nav-item">
-  <a class="nav-link" href="../pages/People-Tracking.html">
-    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-      <svg width="12px" height="12px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <title>people-tracking</title>
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g fill="#FFFFFF" fill-rule="nonzero">
-            <path class="color-background" d="M12 4a3 3 0 100-6 3 3 0 000 6z"></path>
-            <path class="color-background opacity-6" d="M12 7c-4.41 0-8 3.59-8 8v3h16v-3c0-4.41-3.59-8-8-8z"></path>
-          </g>
-        </g>
-      </svg>
-    </div>
-    <span class="nav-link-text ms-1">People Tracking</span>
-  </a>
-</li>
-      <!-- Dwell Time Analysis -->
-      <li class="nav-item">
-        <a class="nav-link" href="../pages/Dwell-Time-Analysis.html">
-          <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-            <svg width="12px" height="12px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <title>dwell-time</title>
-              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g fill="#FFFFFF" fill-rule="nonzero">
-                  <path class="color-background" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
-                  <path class="color-background opacity-6" d="M12 6v6h6"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <span class="nav-link-text ms-1">Dwell Time Analysis</span>
-        </a>
-      </li>
-      <!-- Anomaly Detection -->
-      <li class="nav-item">
-        <a class="nav-link" href="../pages/Anomaly-Detection.html">
-          <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-            <svg width="12px" height="12px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <title>anomaly-detection</title>
-              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g fill="#FFFFFF" fill-rule="nonzero">
-                  <path class="color-background" d="M12 2L2 19h20L12 2zm0 3.5L19.09 17H4.91L12 5.5z"></path>
-                  <path class="color-background opacity-6" d="M12 8v4m0 2h0"></path>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <span class="nav-link-text ms-1">Anomaly Detection</span>
-        </a>
-      </li>
-      
-</li>
-</aside>
+  <?php include 'components/sidebar.php'; ?>
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-  <div class="container-fluid py-1 px-3">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Real Time Ocupancy</li>
-      </ol>
-      <h6 class="font-weight-bolder mb-0">Real Time Ocupancy</h6>
-    </nav>
-    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-      <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-       <div class="input-group"></div>
-      </div>
-      <ul class="navbar-nav justify-content-end">
-        <li class="nav-item d-flex align-items-center">
-          <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-            <span id="datetime" class="d-sm-inline d-none me-2"></span>
-            <span class="d-sm-inline d-none">Sign In</span>
-          </a>
-        </li>
-        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-          <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-            <div class="sidenav-toggler-inner">
-              <i class="sidenav-toggler-line"></i>
-              <i class="sidenav-toggler-line"></i>
-              <i class="sidenav-toggler-line"></i>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+      <?php include 'components/navbar.php'; ?>
     <!-- End Navbar -->
 <div class="container-fluid py-4">
   <div class="row mb-4">

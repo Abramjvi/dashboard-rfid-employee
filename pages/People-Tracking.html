@@ -21,6 +21,8 @@
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
   <!-- Bootstrap Datepicker CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Moment.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 </head>
@@ -169,13 +171,14 @@
           </ol>
           <h6 class="font-weight-bolder mb-0">People Tracking</h6>
         </nav>
+        
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
           </div>
           <ul class="navbar-nav justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                <span id="datetime" class="d-sm-inline d-none me-2"></span>
+                <span id="datetime" class="d-sm-inline me-2"></span>
                 <span class="d-sm-inline d-none">Sign In</span>
               </a>
             </li>
@@ -197,14 +200,27 @@
       <div class="row mb-4">
         <div class="col-md-4">
           <div class="form-group">
+            <label for="departmentSelect" class="form-label text-sm font-weight-bold">Input Department</label>
+            <select class="form-select" id="departmentSelect" aria-label="Select Department">
+              <option selected disabled>Pilih Departemen</option>
+              <option value="hr">HR</option>
+              <option value="it">IT</option>
+              <option value="finance">Finance</option>
+              <option value="marketing">Marketing</option>
+              <option value="operations">Operations</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
             <label for="npkInput" class="form-label text-sm font-weight-bold">NPK</label>
             <input type="number" class="form-control" id="npkInput" placeholder="Enter NPK" aria-label="Enter NPK">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label for="dateSelect" class="form-label text-sm font-weight-bold">Select Date</label>
-            <input type="text" class="form-control datepicker" id="dateSelect" placeholder="Select Date" aria-label="Select Date">
+            <label for="dateInput" class="form-label text-sm font-weight-bold">Date</label>
+            <input type="date" class="form-control" id="dateInput" placeholder="Select Date" aria-label="Select Date">
           </div>
         </div>
       </div>
@@ -246,9 +262,15 @@
       document.getElementById('datetime').innerText = dateTimeString;
     }
 
+    // Isolate time update to ensure it runs
+    window.onload = function() {
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+    };
+
     // Initialize Bootstrap Datepicker
     $(document).ready(function() {
-      $('#dateSelect').datepicker({
+      $('#dateInput').datepicker({
         format: 'dd/mm/yyyy',
         autoclose: true,
         todayHighlight: true,
@@ -257,30 +279,33 @@
     });
 
     // Event listeners for inputs
+    document.getElementById('departmentSelect').addEventListener('change', function() {
+      const selectedDept = this.value;
+      console.log('Departemen yang dipilih:', selectedDept);
+    });
+
     document.getElementById('npkInput').addEventListener('input', function() {
       const npkValue = this.value;
       console.log('NPK yang dimasukkan:', npkValue);
     });
 
-    document.getElementById('dateSelect').addEventListener('change', function() {
+    document.getElementById('dateInput').addEventListener('change', function() {
       const selectedDate = this.value;
       console.log('Tanggal yang dipilih:', selectedDate);
     });
 
     document.getElementById('applyButton').addEventListener('click', function() {
+      const department = document.getElementById('departmentSelect').value;
       const npk = document.getElementById('npkInput').value;
-      const date = document.getElementById('dateSelect').value;
+      const date = document.getElementById('dateInput').value;
       
-      if (npk && date) {
-        console.log('Applying filter:', { npk, date });
-        // Add your logic here to process the NPK and selected date
+      if (department && npk && date) {
+        console.log('Applying filter:', { department, npk, date });
+        // Add your logic here to process the department, NPK, and selected date
       } else {
-        console.log('Please enter NPK and select a date');
+        console.log('Please select department, enter NPK, and select a date');
       }
     });
-
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>

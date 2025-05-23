@@ -36,7 +36,7 @@ $page_display_name = isset($page_names[$current_page]) ? $page_names[$current_pa
                     </a>
                 </li>
                 <li class="nav-item d-flex align-items-center ms-3">
-                    <a href="../logout.php" class="nav-link text-body font-weight-bold px-0" onclick="return confirm('Are you sure you want to log out?');">
+                    <a href="/dashboard-rfid-employee/pages/logout.php" class="nav-link text-body font-weight-bold px-0">
                         <i class="fas fa-sign-out-alt me-1"></i>
                         <span class="d-sm-inline d-none">Log Out</span>
                     </a>

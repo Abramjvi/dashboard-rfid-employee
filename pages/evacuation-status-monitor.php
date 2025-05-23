@@ -28,9 +28,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/KYB_Corporation_company_logo.svg/135px-KYB_Corporation_company_logo.svg.png">
   <title>
-    Soft UI Dashboard by Creative Tim
+    Dashboard Safety Employee 
   </title>
   <!-- Fonts and icons -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -45,6 +45,9 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
+<?php 
+  $host = '192.168.11.236';
+  file_get_contents('http://'.$host.':5000/evacuate'); ?>
     <?php include 'components/sidebar.php'; ?>
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
     <!-- Navbar -->
@@ -71,7 +74,55 @@
       </div>
     </div>
     <div class="col-12 mt-0 pt-0">
-          <img src="../assets/img/evacuation.png" class="img-fluid w-75 mx-auto d-block" alt="Evacuation Layout">
+          <!-- <img src="../assets/img/evacuation.png" class="img-fluid w-75 mx-auto d-block" alt="Evacuation Layout"> -->
+          <style>
+    .iframe-scaler {
+    width: 960px; /* 1920 * 0.55 */
+  height: 540px; /* 1080 * 0.55 */
+  overflow: hidden;
+  position: relative;
+}
+
+.iframe-scaler iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0.5); /* 960/1920 = 0.5 */
+  transform-origin: top left;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: auto; /* Keep interaction enabled */
+}
+
+</style>
+
+<div class="d-flex justify-content-center align-items-center mb-4 position-relative" style="max-width: 1000px; margin: 0 auto;">
+  <div class="iframe-scaler" style="position: relative; top: -50px; width: 100%; padding-bottom: 56.25%; /* Aspect ratio 16:9 */">
+    <iframe id="occupancyImage" 
+        src="<?php echo 'http://' . $host . ':5000/static/html/evacuation_monitor.html'; ?>" 
+        scrolling="true" 
+        width="100%" 
+        height="100%" 
+        style="border:none; position: absolute; top: 0; left: 0;">
+    </iframe>   
+  </div>
+</div>
+    <style>
+  /* Responsif untuk mobile */
+  @media (max-width: 412px) {
+    .iframe-scaler {
+      padding-bottom: 100%; /* Memastikan gambar tetap menyesuaikan dengan ukuran layar */
+      
+    }
+
+    .iframe-scaler iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      transform: scale(1);
+    }
+  }
+</style>
         </div>
   </main>
   <!-- Core JS Files -->

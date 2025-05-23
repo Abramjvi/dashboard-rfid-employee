@@ -48,6 +48,36 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
+  <?php
+      $host = '192.168.11.236';
+      $url = 'http://'.$host.':5000/api/evacuation';
+      $response = file_get_contents($url);
+      $data = json_decode($response, true);
+      $count_in = 0;
+      $count_out = 0;
+      foreach ($data as $area) {
+        if ($area['nama_area'] === 'Inside' && isset($area['countIn'])) {
+            $count_in = $area['countIn'];
+        } elseif ($area['nama_area'] === 'Outside' && isset($area['countOut'])) {
+            $count_out = $area['countOut'];
+        }
+    }
+    $total_count = $count_in + $count_out;
+    
+      $url2 = 'http://'.$host.':5000/api/evacuate/zone';
+      $response2 = file_get_contents($url2);
+      $data2 = json_decode($response2, true);
+      // Prepare data arrays for JS
+      $labels = [];
+      $counts = [];
+
+      foreach ($data2 as $row) {
+          $labels[] = $row['nama_area'];
+          $counts[] = $row['employee_count'];
+      }
+      
+
+    ?>
   <?php include 'components/sidebar.php'; ?>
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
     <!-- Navbar -->
@@ -64,7 +94,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Orang</p>
                     <h5 class="font-weight-bolder mb-0">
-                      5
+                      <?php echo $total_count ?>
                     </h5>
                   </div>
                 </div>
@@ -85,7 +115,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Orang di Dalam</p>
                     <h5 class="font-weight-bolder mb-0">
-                      5
+                      <?php echo $count_in ?>
                     </h5>
                   </div>
                 </div>
@@ -106,7 +136,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Orang di luar</p>
                     <h5 class="font-weight-bolder mb-0">
-                      0
+                      <?php echo $count_out ?>
                     </h5>
                   </div>
                 </div>
@@ -206,15 +236,16 @@
     }
     updateDateTime();
     setInterval(updateDateTime, 1000);
-
+    var labells = <?php echo json_encode($labels); ?>;
+    var dataa = <?php echo json_encode($counts); ?>;
     // Chart Configuration
     var ctx = document.getElementById('occupancyChart').getContext('2d');
     var occupancyChart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['Office Atas', 'Plant', 'Koridor Kantin', 'Lobby Baru'],
+        labels: labells,
         datasets: [{
-          data: [1, 1, 2, 1],
+          data: dataa,
           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
         }]
       },

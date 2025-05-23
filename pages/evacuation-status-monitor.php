@@ -47,7 +47,11 @@
 <body class="g-sidenav-show bg-gray-100">
 <?php 
   $host = '192.168.11.236';
-  file_get_contents('http://'.$host.':5000/evacuate'); ?>
+  file_get_contents('http://'.$host.':5000/evacuate');
+  $url = 'http://'.$host.':5000/api/departments';
+  $response = file_get_contents($url);
+  $data = json_decode($response, true);
+  ?>
     <?php include 'components/sidebar.php'; ?>
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
     <!-- Navbar -->
@@ -62,13 +66,16 @@
           <div class="form-group">
             <label for="departmentSelect" class="form-label text-sm font-weight-bold">Input Department</label>
             <select class="form-select" id="departmentSelect" aria-label="Select Department">
-              <option selected disabled>Pilih Departemen</option>
-              <option value="hr">HR</option>
-              <option value="it">IT</option>
-              <option value="finance">Finance</option>
-              <option value="marketing">Marketing</option>
-              <option value="operations">Operations</option>
+               <option selected disabled>Pilih Departemen</option>
+                  <?php foreach ($data as $dept): ?>
+                    <?php if (!empty($dept['id'])): ?>
+                      <option value="<?php echo htmlspecialchars($dept['id']); ?>">
+                        <?php echo htmlspecialchars($dept['name']); ?>
+                      </option>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
             </select>
+
           </div>
         </div>
       </div>
@@ -154,7 +161,24 @@
     }
     document.getElementById('departmentSelect').addEventListener('change', function() {
       const selectedDept = this.value;
+      const host = "<?php echo $host; ?>";
       console.log('Departemen yang dipilih:', selectedDept);
+      // Call the Flask endpoint with the selected department
+      fetch(`http://${host}:5000/evacuate?dept=${selectedDept}`)
+  .then(response => {
+    if (response.ok) {
+      // Reload the iframe on success
+      const iframe = document.getElementById('occupancyImage');
+      iframe.src = iframe.src;
+    } else {
+      console.error('Gagal memanggil API. Status:', response.status);
+    }
+  })
+  .catch(error => {
+    console.error('Terjadi kesalahan saat memanggil API:', error);
+  });
+
+    
     });
     updateDateTime();
     setInterval(updateDateTime, 1000);

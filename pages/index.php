@@ -1,3 +1,9 @@
+<?php
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -113,6 +119,30 @@
                         >Password</label
                       >
                     </div>
+                    <div class="form-group mb-4">
+                      <div class="d-flex align-items-center">
+                        <img
+                          id="captcha-img"
+                          src="../vendor/securimage-nextgen/securimage_show.php"
+                          alt="CAPTCHA Image"
+                          class="me-2"
+                        />
+                        <button
+                          type="button"
+                          id="refresh-captcha"
+                          class="btn btn-outline-secondary btn-sm"
+                        >
+                          <i class="fas fa-sync-alt"></i>
+                        </button>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mt-2"
+                        id="captcha_code"
+                        name="captcha_code"
+                        placeholder="Enter CAPTCHA"
+                      />
+                    </div>
                     <button type="submit" class="btn btn-login w-100 mt-3">
                       Submit
                     </button>
@@ -141,10 +171,10 @@
       </div>
     </footer>
 
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+    <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -186,11 +216,19 @@
               window.location.href = data.redirect || 'pages/dashboard.html';
             } else {
               alert(data.message || 'Login failed. Please try again.');
+              // Refresh CAPTCHA on failed login
+              document.getElementById('captcha-img').src =
+                '../vendor/securimage-nextgen/securimage_show.php?_=' + new Date().getTime();
+              document.getElementById('captcha_code').value = '';
             }
           })
           .catch(error => {
             alert('An error occurred during login. Please try again.');
             console.error('Error:', error);
+            // Refresh CAPTCHA on error
+            document.getElementById('captcha-img').src =
+              '../vendor/securimage-nextgen/securimage_show.php?_=' + new Date().getTime();
+            document.getElementById('captcha_code').value = '';
           });
       });
     </script>
@@ -199,5 +237,15 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+      // Periksa parameter query 'alert' di URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const alertMessage = urlParams.get('alert');
+      if (alertMessage) {
+        alert(decodeURIComponent(alertMessage));
+        // Hapus parameter alert dari URL tanpa reload halaman
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    </script>
   </body>
 </html>

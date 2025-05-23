@@ -1,15 +1,24 @@
 <?php
 session_start();
+require_once '../config.php';
+
+// Hapus sesi dari database
+if (isset($_SESSION['user_id'])) {
+    $stmt = $pdo->prepare("DELETE FROM sessions WHERE user_id = ?");
+    $stmt->execute([$_SESSION['user_id']]);
+}
 
 // Destroy all session data
 session_unset();
 session_destroy();
 
-// Return JSON response for consistency with login-post.php
-header('Content-Type: application/json');
-echo json_encode([
-    'success' => true,
-    'redirect' => 'index.php' // Redirect to login page
-]);
+// Set header untuk mencegah caching
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
+
+// Redirect ke index.php
+header('Location: /dashboard-rfid-employee/pages/index.php');
 exit;
 ?>

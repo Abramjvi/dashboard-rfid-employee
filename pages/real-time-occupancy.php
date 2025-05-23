@@ -1,18 +1,18 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
+<?php
+session_start();
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
+// Set header cache-control untuk mencegah caching
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+header('Expires: Thu, 01 Jan 1970 00:00:00 GMT'); // Pastikan cache kadaluarsa
 
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
+// Periksa apakah pengguna sudah login
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /dashboard-rfid-employee/pages/index.php?alert=' . urlencode('Anda harus login terlebih dahulu!'));
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

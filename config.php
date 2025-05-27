@@ -1,9 +1,9 @@
 <?php
 // config.php
 $host = 'localhost';
-$dbname = 'rfid';
+$dbname = 'employee_locating_system';
 $username = 'root'; // Ganti dengan username database Anda
-$password = ''; // Ganti dengan password database Anda
+$password = 'Digital1ze'; // Ganti dengan password database Anda
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

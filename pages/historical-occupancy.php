@@ -208,8 +208,8 @@ if (!isset($_SESSION['user_id'])) {
 
     document.getElementById('applyButton').addEventListener('click', function() {
       const department = document.getElementById('departmentSelect').value;
-      const startTime = document.getElementById('date1').value;
-      
+      const rawStartTime = document.getElementById('date1').value;
+      const startTime = rawStartTime.replace('T', ' ') + ':00';
       if (department && startTime) {
         console.log('Applying filter:', { department, startTime });
         const host = "<?php echo $host; ?>";

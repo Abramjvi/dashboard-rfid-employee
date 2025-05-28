@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_id'])) {
 
 <body class="g-sidenav-show bg-gray-100">
 <?php 
-  $host = '192.168.11.236';
+  $host = '172.16.16.253';
   file_get_contents('http://'.$host.':5000/historical_occupancy_dashboard');
   $url = 'http://'.$host.':5000/api/departments';
   $response = file_get_contents($url);

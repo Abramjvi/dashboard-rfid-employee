@@ -1,11 +1,12 @@
 <?php
-// Start session
-session_start();
 
 // Set session cookie lifetime to 1 hour (3600 seconds)
 ini_set('session.cookie_lifetime', 3600);
 ini_set('session.gc_maxlifetime', 3600);
 session_set_cookie_params(3600);
+
+// Start session
+session_start();
 
 require_once 'config.php';
 

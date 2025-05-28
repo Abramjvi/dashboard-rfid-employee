@@ -1,12 +1,11 @@
 <?php
-
-// Start session
-session_start();
-
 // set session 1 jam
 ini_set('session.cookie_lifetime', 3600);
 ini_set('session.gc_maxlifetime', 3600);
 session_set_cookie_params(3600);
+
+// Start session
+session_start();
 
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Cache-Control: post-check=0, pre-check=0', false);
